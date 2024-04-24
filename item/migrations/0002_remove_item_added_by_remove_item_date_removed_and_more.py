@@ -5,75 +5,80 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
+    # This migration depends on a previous initial migration in the 'item' app.
     dependencies = [
         ('item', '0001_initial'),
     ]
 
+    # This block specifies a series of operations to alter the 'item' model structure in the database.
     operations = [
+        # Remove existing fields from the 'item' model. This may involve data deletion.
         migrations.RemoveField(
             model_name='item',
-            name='added_by',
+            name='added_by',    # Removed the field linking to the user who added the item.
         ),
         migrations.RemoveField(
             model_name='item',
-            name='date_removed',
+            name='date_removed',    # Removed the field for the item removal date.
         ),
         migrations.RemoveField(
             model_name='item',
-            name='date_stored',
+            name='date_stored', # Removed the field for the item storage date.
         ),
         migrations.RemoveField(
             model_name='item',
-            name='fragile',
+            name='fragile', # Removed the boolean field indicating if the item is fragile.
         ),
         migrations.RemoveField(
             model_name='item',
-            name='item_class',
+            name='item_class',  # Removed the field for classifying the item type.
         ),
         migrations.RemoveField(
             model_name='item',
-            name='item_num',
+            name='item_num',     # Removed the field for the number of units of the item.
         ),
         migrations.RemoveField(
             model_name='item',
-            name='item_store',
+            name='item_store',  # Removed the field linking the item to a specific store.
         ),
         migrations.RemoveField(
             model_name='item',
-            name='units',
+            name='units',   # Removed the field for units of measurement (e.g., kg, g, t).
         ),
         migrations.RemoveField(
             model_name='item',
-            name='weight',
+            name='weight',  # Removed the field for the weight of the item.
         ),
+        # Add new fields to the 'item' model. These additions suggest a shift in the focus of what the item represents.
         migrations.AddField(
             model_name='item',
             name='cpu',
-            field=models.CharField(max_length=100, null=True, verbose_name='CPU'),
+            field=models.CharField(max_length=100, null=True, verbose_name='CPU'),  # Added a field for CPU specification.
         ),
         migrations.AddField(
             model_name='item',
             name='gpu',
-            field=models.CharField(max_length=100, null=True, verbose_name='GPU'),
+            field=models.CharField(max_length=100, null=True, verbose_name='GPU'),  # Added a field for GPU specification.
         ),
         migrations.AddField(
             model_name='item',
             name='ram',
-            field=models.CharField(max_length=100, null=True, verbose_name='RAM'),
+            field=models.CharField(max_length=100, null=True, verbose_name='RAM'),  # Added a field for RAM size.
         ),
         migrations.AddField(
             model_name='item',
             name='serial',
-            field=models.CharField(max_length=100, null=True, verbose_name='Device Serial'),
+            field=models.CharField(max_length=100, null=True, verbose_name='Device Serial'),    # Added a field for the device serial number.
         ),
         migrations.AddField(
             model_name='item',
             name='type',
-            field=models.CharField(max_length=100, null=True, verbose_name='Device type'),
+            field=models.CharField(max_length=100, null=True, verbose_name='Device type'),  # Added a field to specify the type of device.
         ),
+        # Modify an existing field in the 'item' model. This change allows the name field to be nullable and changes its label.
         migrations.AlterField(
             model_name='item',
             name='name',
-            field=models.CharField(max_length=100, null=True, verbose_name='Device name'),
+            field=models.CharField(max_length=100, null=True, verbose_name='Device name'),  # Changed 'Item name' to 'Device name' and allowed it to be null.
         ),
     ]
