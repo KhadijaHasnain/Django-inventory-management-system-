@@ -2,29 +2,34 @@
 
 from django.db import migrations, models
 
-
 class Migration(migrations.Migration):
 
+    # This migration is dependent on the previous migration in the 'item' app.
     dependencies = [
         ('item', '0002_remove_item_added_by_remove_item_date_removed_and_more'),
     ]
 
+    # Define the operations to modify existing fields in the 'item' model.
     operations = [
+        # Modify the 'cpu' field to add specific choices, reflecting a standardized set of CPU types.
         migrations.AlterField(
             model_name='item',
             name='cpu',
             field=models.CharField(choices=[('I7-7700HQ', 'I7-7700HQ'), ('I7-8750H', 'I7-8750H'), ('M2 10C', 'M2 10C'), ('BCM2711C0', 'BCM2711C0'), ('6-Core Intel Core I5', '6-Core Intel Core I5')], max_length=100, null=True, verbose_name='CPU'),
         ),
+        # Modify the 'gpu' field to add specific choices, representing a selection of GPU types.
         migrations.AlterField(
             model_name='item',
             name='gpu',
             field=models.CharField(choices=[('GTX 1070', 'GTX 1070'), ('RTX 2070', 'RTX 2070')], max_length=100, null=True, verbose_name='GPU'),
         ),
+        # Modify the 'ram' field to introduce choices for RAM sizes, offering specific values.
         migrations.AlterField(
             model_name='item',
             name='ram',
             field=models.CharField(choices=[('32', '32'), ('16', '16')], max_length=100, null=True, verbose_name='RAM'),
         ),
+        # Modify the 'type' field to provide a list of device types, clarifying the kinds of items this model is meant to represent.
         migrations.AlterField(
             model_name='item',
             name='type',
